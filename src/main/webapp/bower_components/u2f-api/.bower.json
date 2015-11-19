@@ -1,0 +1,32 @@
+{
+  "name": "u2f-api",
+  "main": "u2f-api.js",
+  "version": "0.1.1",
+  "authors": [
+    "arnar"
+  ],
+  "description": "High level JavaScript API for interacting with FIDO U2F devices in Chrome",
+  "keywords": [
+    "fido",
+    "u2f"
+  ],
+  "license": "BSD",
+  "homepage": "https://fidoalliance.org/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.1",
+    "commit": "b0994fcc5d47ea8fb0a77e23315622349985a52a"
+  },
+  "_source": "git://github.com/mastahyeti/u2f-api.git",
+  "_target": "~0.1.1",
+  "_originalSource": "u2f-api",
+  "_direct": true
+}

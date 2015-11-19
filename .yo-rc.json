@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "INGKey",
+    "packageName": "ro.ing.ingkey",
+    "packageFolder": "ro/ing/ingkey",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "bf004fa2bbb1c07b90c6d0bb50540db0fef4c215",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
