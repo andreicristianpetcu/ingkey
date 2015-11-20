@@ -16,18 +16,40 @@
         <!-- build:css assets/styles/main.css -->
         <link rel="stylesheet" href="assets/styles/main.css">
         <!-- endbuild -->
+
+        <link rel="stylesheet" href="assets/styles/style.css">
     </head>
     <body ng-app="iNGKeyApp">
         <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div ui-view="navbar" ng-cloak=""></div>
-        <div class="container">
-            <div class="well" ui-view="content"></div>
-
-            <div class="footer">
-                <p translate="footer"></p>
+        <nav class="row">
+            <div class="well padding-top-0 col-md-4">
+                <div class="ingkey-container">
+                    <h1>Menu</h1>
+                </div>
+                <div class="ingkey-container">
+                    <li ui-sref-active="active">
+                        <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">
+                            <span class="glyphicon glyphicon-home"></span>
+                            <span class="hidden-sm">Home</span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">
+                            <span class="hidden-sm">Payments</span>
+                        </a>
+                    </li>
+                </div>
             </div>
+            <div class="col-md-8">
+                <div class="well" ui-view="content"></div>
+            </div>
+        </nav>
+
+        <div class="footer">
+            <p translate="footer"></p>
         </div>
 
         <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
