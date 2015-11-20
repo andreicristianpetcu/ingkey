@@ -1,6 +1,9 @@
 package ro.ing.ingkey.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.google.common.collect.Lists;
+import com.yubico.u2f.U2F;
+import com.yubico.u2f.data.messages.RegisterRequestData;
 import ro.ing.ingkey.domain.Authority;
 import ro.ing.ingkey.domain.PersistentToken;
 import ro.ing.ingkey.domain.User;
@@ -36,6 +39,9 @@ public class AccountResource {
 
     private final Logger log = LoggerFactory.getLogger(AccountResource.class);
 
+    public static final String APP_ID = "https://localhost:8443";
+    private final Map<String, String> requestStorage = new HashMap<>();
+
     @Inject
     private UserRepository userRepository;
 
@@ -47,6 +53,9 @@ public class AccountResource {
 
     @Inject
     private MailService mailService;
+
+    @Inject
+    private U2F u2f;
 
     /**
      * POST  /register -> register the user.
@@ -87,6 +96,18 @@ public class AccountResource {
         return Optional.ofNullable(userService.activateRegistration(key))
             .map(user -> new ResponseEntity<String>(HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+
+    @RequestMapping(value = "/yubi-registration",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> startRegistration(@RequestParam(value = "activateKey") String activateKey) {
+
+        RegisterRequestData registerRequestData = u2f.startRegistration(APP_ID, Lists.newArrayList());
+        requestStorage.put(registerRequestData.getRequestId(), registerRequestData.toJson());
+
+        return new ResponseEntity<>(registerRequestData.toJson(), HttpStatus.OK);
     }
 
     /**

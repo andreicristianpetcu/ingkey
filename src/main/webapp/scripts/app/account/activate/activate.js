@@ -17,6 +17,9 @@ angular.module('iNGKeyApp')
                     }
                 },
                 resolve: {
+                    yubiChallangeData:  ['$http', '$stateParams', function($http, $stateParams){
+                        return $http.get("/api/yubi-registration",{ params: {activateKey: $stateParams.key}});
+                    }],
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('activate');
                         return $translate.refresh();

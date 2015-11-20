@@ -128,6 +128,11 @@
         </dependency>
         <dependency>
             <groupId>com.yubico</groupId>
+            <artifactId>u2flib-server-attestation</artifactId>
+            <version>0.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yubico</groupId>
             <artifactId>yubico-validation-client2</artifactId>
             <version>3.0.1</version>
         </dependency>
@@ -360,6 +365,13 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-data</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
