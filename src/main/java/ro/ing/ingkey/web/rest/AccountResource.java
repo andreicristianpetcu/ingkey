@@ -1,11 +1,19 @@
 package ro.ing.ingkey.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.google.common.collect.Sets;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import ro.ing.ingkey.domain.Authority;
 import ro.ing.ingkey.domain.PersistentToken;
 import ro.ing.ingkey.domain.User;
 import ro.ing.ingkey.repository.PersistentTokenRepository;
 import ro.ing.ingkey.repository.UserRepository;
+import ro.ing.ingkey.security.AuthoritiesConstants;
+import ro.ing.ingkey.security.CustomUserDetails;
 import ro.ing.ingkey.security.SecurityUtils;
 import ro.ing.ingkey.service.MailService;
 import ro.ing.ingkey.service.UserService;
@@ -26,6 +34,9 @@ import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static ro.ing.ingkey.security.AuthoritiesConstants.PRE_AUTH_USER;
 
 /**
  * REST controller for managing the current user's account.
@@ -131,6 +142,21 @@ public class AccountResource {
                 return new ResponseEntity<String>(HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+    @RequestMapping(value = "/account/code",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<String> code() {
+        Set<GrantedAuthority> grantedAuthorities = userService.getUserAuthorities().stream()
+            .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+            .collect(Collectors.toSet());
+
+        CustomUserDetails principal = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        principal.setAuthorities(grantedAuthorities);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

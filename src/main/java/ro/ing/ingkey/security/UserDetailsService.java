@@ -1,5 +1,7 @@
 package ro.ing.ingkey.security;
 
+import com.google.common.collect.Sets;
+import org.springframework.security.core.authority.AuthorityUtils;
 import ro.ing.ingkey.domain.Authority;
 import ro.ing.ingkey.domain.User;
 import ro.ing.ingkey.repository.UserRepository;
@@ -16,6 +18,8 @@ import javax.inject.Inject;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static ro.ing.ingkey.security.AuthoritiesConstants.PRE_AUTH_USER;
 
 /**
  * Authenticate a user from the database.
@@ -38,9 +42,14 @@ public class UserDetailsService implements org.springframework.security.core.use
             if (!user.getActivated()) {
                 throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
             }
-            Set<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
-                    .map(authority -> new SimpleGrantedAuthority(authority.getName()))
-                .collect(Collectors.toSet());
+
+            // TODO: disabled for now, just adding PRE_AUTH_USER
+//            Set<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
+//                    .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+//                .collect(Collectors.toSet());
+
+            Set<GrantedAuthority>  grantedAuthorities = Sets.newHashSet(AuthorityUtils.createAuthorityList(PRE_AUTH_USER));
+
             return new CustomUserDetails(user.getId(), lowercaseLogin,
                 user.getPassword(),
                 grantedAuthorities, true, true, true, true);

@@ -1,24 +1,30 @@
 package ro.ing.ingkey.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ro.ing.ingkey.domain.Authority;
-import ro.ing.ingkey.domain.PersistentToken;
 import ro.ing.ingkey.domain.User;
 import ro.ing.ingkey.repository.AuthorityRepository;
 import ro.ing.ingkey.repository.PersistentTokenRepository;
 import ro.ing.ingkey.repository.UserRepository;
 import ro.ing.ingkey.security.SecurityUtils;
 import ro.ing.ingkey.service.util.RandomUtil;
-import java.time.ZonedDateTime;
-import java.time.LocalDate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toSet;
+import static ro.ing.ingkey.security.SecurityUtils.getCurrentUser;
 
 /**
  * Service class for managing users.
@@ -56,20 +62,20 @@ public class UserService {
     }
 
     public Optional<User> completePasswordReset(String newPassword, String key) {
-       log.debug("Reset user password for reset key {}", key);
+        log.debug("Reset user password for reset key {}", key);
 
-       return userRepository.findOneByResetKey(key)
+        return userRepository.findOneByResetKey(key)
             .filter(user -> {
                 ZonedDateTime oneDayAgo = ZonedDateTime.now().minusHours(24);
                 return user.getResetDate().isAfter(oneDayAgo);
-           })
-           .map(user -> {
+            })
+            .map(user -> {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
                 user.setResetDate(null);
                 userRepository.save(user);
                 return user;
-           });
+            });
     }
 
     public Optional<User> requestPasswordReset(String mail) {
@@ -84,7 +90,7 @@ public class UserService {
     }
 
     public User createUserInformation(String login, String password, String firstName, String lastName, String email,
-        String langKey) {
+                                      String langKey) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne("ROLE_USER");
@@ -120,7 +126,7 @@ public class UserService {
     }
 
     public void changePassword(String password) {
-        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u-> {
+        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u -> {
             String encryptedPassword = passwordEncoder.encode(password);
             u.setPassword(encryptedPassword);
             userRepository.save(u);
@@ -146,8 +152,14 @@ public class UserService {
     @Transactional(readOnly = true)
     public User getUserWithAuthorities() {
         User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        user.getAuthorities().size(); // eagerly load the association
+        Set<Authority> authorities = getCurrentUser().getAuthorities().stream()
+            .map(grantedAuthority -> new Authority(grantedAuthority.getAuthority())).collect(toSet());
+        user.setAuthorities(authorities);
         return user;
+    }
+
+    public Set<Authority> getUserAuthorities() {
+        return userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getAuthorities();
     }
 
     /**
