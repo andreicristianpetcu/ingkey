@@ -34,6 +34,8 @@ module.exports = function (config) {
             'main/webapp/bower_components/ng-file-upload/ng-file-upload.js',
             'main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
             'main/webapp/bower_components/u2f-api/u2f-api.js',
+            'main/webapp/bower_components/qrcode-generator/js/qrcode.js',
+            'main/webapp/bower_components/angular-qrcode/angular-qrcode.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/app/app.js',

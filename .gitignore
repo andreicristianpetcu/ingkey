@@ -8,6 +8,7 @@
 ######################
 /node/**
 /node_modules/**
+**/bower_components/**
 
 ######################
 # SASS
