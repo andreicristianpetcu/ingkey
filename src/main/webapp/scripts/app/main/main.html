@@ -19,6 +19,8 @@
                 <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">
                     You don't have an account yet? <a class="alert-link" href="#/register">Register a new account</a>
                 </div>
+
+                <qrcode ng-hide="true" version="4" error-correction-level="M" size="200" data="https://github.com/monospaced/angular-qrcode"></qrcode>
             </div>
 
         </div>
