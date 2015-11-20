@@ -20,10 +20,10 @@ spring:
             enabled: false
     datasource:
         driver-class-name: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/INGKey?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://localhost:3306/ingkey?useUnicode=true&characterEncoding=utf8
         name:
         username: root
-        password:
+        password: pumahack15
     jpa:
         database-platform: org.hibernate.dialect.MySQLInnoDBDialect
         database: MYSQL
