@@ -6,4 +6,6 @@ angular.module('iNGKeyApp')
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
+
+
     });
