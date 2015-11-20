@@ -654,6 +654,7 @@
                                     <goal>build</goal>
                                 </goals>
                                 <configuration>
+                                    <npmInstallArgs>install --production</npmInstallArgs>
                                     <buildTool>grunt</buildTool>
                                     <buildArgs>build --force --no-color</buildArgs>
                                 </configuration>
