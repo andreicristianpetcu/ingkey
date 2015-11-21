@@ -1,38 +1,32 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-8">
-            <div ng-switch="isAuthenticated()">
-                <h1>Payments</h1>
+        <div class="col-md-4">
+            <span class="hipster img-responsive img-rounded"></span>
+        </div>
 
-                <form role="form" class="form-horizontal" ng-submit="redirect($event)">
-                    <div class="form-group row">
-                        <label for="srcIban" class="control-label col-md-4">Source IBAN:</label>
-                        <div class="col-md-4">
+        <div class="col-md-8">
+            <div class="col-md-6">
+                <div ng-switch="isAuthenticated()">
+                    <h1>Payments</h1>
+
+                    <form role="form" class="form" ng-submit="redirect($event)">
+                        <div class="form-group">
+                            <label for="srcIban" >Source IBAN:</label>
                             <input id="srcIban" class="form-control" type="text">
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label class="control-label col-md-4">Available Ammount:</label>
-                        <label class="text-align-left control-label col-md-3">2000 EURO</label>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="ammount" class="control-label col-md-4">Ammount:</label>
-                        <div class="col-md-4">
-                            <input id="ammount" class="form-control" type="text">
+                        <div class="form-group">
+                            <label for="amount" >Amount:</label>
+                            <input id="amount" class="form-control" type="text">
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label for="destIban" class="control-label col-md-4">Destination IBAN:</label>
-                        <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="destIban" >Destination IBAN:</label>
                             <input id="destIban" class="form-control" type="text">
                         </div>
-                    </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
 
                 <!-- Modal -->
                 <div id="promptModal" class="modal fade" tabindex="-1" role="dialog"
@@ -57,8 +51,8 @@
                     </div>
                 </div>
 
+                </div>
             </div>
-
         </div>
     </div>
 </div>
