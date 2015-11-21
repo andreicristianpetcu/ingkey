@@ -20,7 +20,7 @@ spring:
             enabled: false
     datasource:
         driver-class-name: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/ingkey?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://192.168.145.54:3306/ingkey?useUnicode=true&characterEncoding=utf8
         name:
         username: root
         password: pumahack15
