@@ -3,16 +3,16 @@
 angular.module('iNGKeyApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('payments', {
-                parent: 'code',
-                url: '/payments',
+            .state('finish', {
+                parent: 'site',
+                url: '/finish',
                 data: {
                     authorities: []
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/payments/payments.html',
-                        controller: 'PaymentsController'
+                        templateUrl: 'scripts/app/finish/finish.html',
+                        controller: 'FinishController'
                     }
                 }
             });

@@ -1,14 +1,11 @@
 'use strict';
 
 angular.module('iNGKeyApp')
-    .controller('PaymentsController', function ($scope, $state, Principal) {
+    .controller('FinishController', function ($scope, Principal) {
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
 
-        $scope.redirect = function(event) {
-            $state.go('finish');
-        }
 
     });

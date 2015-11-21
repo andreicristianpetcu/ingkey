@@ -4,7 +4,7 @@
             <div ng-switch="isAuthenticated()">
                 <h1>Payments</h1>
 
-                <form role="form" class="form-horizontal">
+                <form role="form" class="form-horizontal" ng-submit="redirect($event)">
                     <div class="form-group row">
                         <label for="srcIban" class="control-label col-md-4">Source IBAN:</label>
                         <div class="col-md-4">
@@ -31,9 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <a class="col-md-offset-3 col-md-2 btn btn-default">Submit</a>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
             </div>

@@ -8,7 +8,7 @@ angular.module('iNGKeyApp')
                 code: $scope.code
             }, function() {
                 Principal.identity(true);
-                $state.go('home');
+                $state.go('payments');
             });
         };
     });
