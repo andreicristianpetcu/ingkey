@@ -10,3 +10,7 @@
 .text-align-left {
     text-align:left;
 }
+
+.big-font {
+    font-size: 150%;
+}

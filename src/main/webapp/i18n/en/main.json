@@ -1,7 +1,7 @@
 {
     "main": {
         "title": "Welcome to Ing Key!",
-        "subtitle": "The simplest, securest banking authentication!",
+        "subtitle": "The simplest, most secure banking authentication!",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         }

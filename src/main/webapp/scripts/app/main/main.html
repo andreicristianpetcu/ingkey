@@ -3,6 +3,7 @@
         <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
         </div>
+
         <div class="col-md-8">
             <h1 translate="main.title">Welcome to ING Key!</h1>
             <p class="lead" translate="main.subtitle">This is your homepage</p>
@@ -12,12 +13,8 @@
                     You are logged in as user "{{account.login}}".
                 </div>
 
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">
-                    If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">
-                    You don't have an account yet? <a class="alert-link" href="#/register">Register a new account</a>
+                <div class="alert alert-warning" ng-switch-when="false">
+                    Please <a class="alert-link" href="#/login">sign in</a>. If you don't have an account yet, you may <a class="alert-link" href="#/register">register a new one</a>.
                 </div>
             </div>
 
