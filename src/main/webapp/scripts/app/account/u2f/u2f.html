@@ -1,15 +1,20 @@
 <div>
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <h1 translate="code.title">Enter code</h1>
+        <div class="col-md-4">
+            <span class="hipster img-responsive img-rounded"></span>
         </div>
-        <div class="col-md-4 col-md-offset-4">
-            <form class="form" role="form" ng-submit="redirect($event)">
+        <div class="col-md-6">
+            <form class="form" role="form" ng-submit="enterCode($event)">
                 <div class="form-group">
-                    <label for="code" translate="global.form.code">Code</label>
-                    <input type="text" class="form-control" id="code" placeholder="{{'global.form.code.placeholder' | translate}}" ng-model="code">
+                    <h2>Performing OTP action</h2>
+                    <p>Please touch the flashing OTP device now.</p>
+                    <p>
+                        You may be prompted to allow the site permission to access your security keys. After
+                        granting permission, the device will start to blink.
+                    </p>
+                    <input type="text" class="form-control" id="code" ng-model="code">
                 </div>
-                <button type="submit" class="btn btn-primary" translate="code.form.button">Authenticate</button>
+                <button type="submit" class="btn btn-primary">Enter code</button>
             </form>
         </div>
     </div>
