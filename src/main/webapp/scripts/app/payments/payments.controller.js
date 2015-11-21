@@ -28,6 +28,7 @@ angular.module('iNGKeyApp')
 
             setTimeout(function(){
                 $('#promptModal').modal('hide');
+                $('.modal-backdrop').hide();
                 $state.go('finish');
             }, 2000)
         }
