@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default" role="navigation" ng-show="isAuthenticated()">
+    <h1>Menu</h1>
+    <ul>
+        <li ui-sref-active="active">
+            <a ui-sref="home">
+                <span class="glyphicon glyphicon-home"></span>
+                <span class="hidden-sm">Home</span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="payments">
+                <span class="hidden-sm">Payments</span>
+            </a>
+        </li>
+    </ul>
+</nav>

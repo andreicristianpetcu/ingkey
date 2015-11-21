@@ -11,14 +11,6 @@
     text-align:left;
 }
 
-.finish {
-    display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url("../images/finish.png") no-repeat center top;
-    background-size: contain;
-}
-
 .big-font {
     font-size: 150%;
 }

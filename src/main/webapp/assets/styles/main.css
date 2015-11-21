@@ -75,6 +75,14 @@ Browser Upgrade Prompt
     background-size: contain;
 }
 
+.yubi {
+    display: inline-block;
+    width: 347px;
+    height: 250px;
+    background: url("../images/touch-yubi-key.jpg") no-repeat center top;
+    background-size: contain;
+}
+
 .pad {
     padding: 10px;
 }

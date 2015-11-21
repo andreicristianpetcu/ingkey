@@ -28,6 +28,29 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
 
+                <!-- Modal -->
+                <div id="promptModal" class="modal fade" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="myModalLabel">Sign Transaction</h3>
+                            </div>
+                            <div class="modal-body" >
+                                <p>Please touch the flashing U2F device now.</p>
+                                <div style="align-content: center">
+                                    <span class="yubi img-responsive img-rounded "></span>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-default" ng-click="abort()">Abort</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
