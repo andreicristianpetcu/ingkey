@@ -15,7 +15,7 @@ angular.module('iNGKeyApp')
             var request = {
                 "challenge": "bbfB9hJpZWFhafmNcxM7ZULNPEObp8Yx6T5ANSD7XBs",
                 "version": "U2F_V2",
-                "appId": "https://localhost:8080"
+                "appId": "http://localhost:8080"
             };
             console.log("Register: ", request);
 
@@ -23,9 +23,13 @@ angular.module('iNGKeyApp')
                 console.log("Register callback", data);
 
                 console.log(JSON.stringify(data));
-                //$('#promptModal').modal('hide');
-
             })
+
+
+            setTimeout(function(){
+                $('#promptModal').modal('hide');
+                $state.go('finish');
+            }, 2000)
         }
 
         $scope.abort = function() {
