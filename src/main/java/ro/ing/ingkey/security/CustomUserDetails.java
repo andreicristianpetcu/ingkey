@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Class representing the Spring Security authenticated user.
- * 
+ *
  * @see UserDetails
  *
  */
@@ -20,7 +20,7 @@ public class CustomUserDetails implements UserDetails {
     private final Long id;
     private final String password;
     private final String username;
-    private final Set<GrantedAuthority> authorities;
+    private Set<GrantedAuthority> authorities;
     private final boolean accountNonExpired;
     private final boolean accountNonLocked;
     private final boolean credentialsNonExpired;
@@ -94,5 +94,9 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public String toString() {
         return "CustomUserDetails{" + id + ',' + username + ',' + authorities + '}';
+    }
+
+    public void setAuthorities(Set<GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 }

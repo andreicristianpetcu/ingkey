@@ -18,7 +18,7 @@ angular.module('iNGKeyApp')
                 if ($rootScope.previousStateName === 'register') {
                     $state.go('home');
                 } else {
-                    $rootScope.back();
+                    $state.go('code');
                 }
             }).catch(function () {
                 $scope.authenticationError = true;
