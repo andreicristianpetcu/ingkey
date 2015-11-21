@@ -71,6 +71,10 @@ angular.module('iNGKeyApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalp
                 'navbar@': {
                     templateUrl: 'scripts/components/navbar/navbar.html',
                     controller: 'NavbarController'
+                },
+                'navbar-main@': {
+                    templateUrl: 'scripts/components/navbar-main/navbar-main.html',
+                    controller: 'NavbarMainController'
                 }
             },
             resolve: {
